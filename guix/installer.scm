@@ -25,7 +25,6 @@
                "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
                (openpgp-fingerprint
                 "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
-            %default-channels))
             (channel
              (name 'flat)
              (url "https://github.com/flatwhatson/guix-channel.git")
@@ -34,6 +33,7 @@
                "33f86a4b48205c0dc19d7c036c85393f0766f806"
                (openpgp-fingerprint
                 "736A C00E 1254 378B A982  7AF6 9DBE 8265 81B6 4490")))))
+            %default-channels))
 
 (define %xorg-libinput-config
   "Section \"InputClass\"
@@ -96,9 +96,7 @@ EndSection
     (services
      (cons*
       ;; Include the channel file so that it can be used during installation
-      (simple-service 'channel-file etc-service-type
-                      (list `("channels.scm" ,(local-file "channels.scm"))))
-      (operating-system-user-services installation-os)))
+     (operating-system-user-services installation-os)))
 
     ;; Add some extra packages useful for the installation process
     (packages
@@ -132,6 +130,8 @@ EndSection
             (service tor-service-type)
             (service cups-service-type)
             (extra-special-file "/etc/guix/channels.scm" %guix-channels)
+            (simple-service 'channel-file etc-service-type
+                            (list `("channels.scm" ,(local-file "channels.scm"))))
             (extra-special-file "/usr/bin/env"
                                 (file-append coreutils "/bin/env"))
             (service tlp-service-type

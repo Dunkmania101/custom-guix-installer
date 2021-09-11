@@ -25,7 +25,7 @@ jobs:
       - name: Build ISO
         run: |
           # Build the image
-          image=$(guix time-machine -- system image -t iso9660 './guix/installer.scm')
+          image=$(guix time-machine -C ./guix/channels.scm -- system image -t iso9660 './guix/installer.scm')
           # Copy the image to the local folder with a better name
           export RELEASE_TAG=$(date +"%Y%m%d%H%M")
           echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
