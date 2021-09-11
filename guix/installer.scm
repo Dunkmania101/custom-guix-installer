@@ -2,10 +2,6 @@
   #:use-module (gnu services)
   #:use-module (gnu system)
   #:use-module (gnu system install)
-  #:use-module (gnu packages version-control)
-  #:use-module (gnu packages vim)
-  #:use-module (gnu packages curl)
-  #:use-module (gnu packages emacs)
   #:use-module (gnu packages linux)
   #:use-module (gnu packages mtools)
   #:use-module (gnu packages package-management)
@@ -80,10 +76,14 @@ EndSection
     ;; Add some extra packages useful for the installation process
     (packages
      (append (list
-              git curl stow vim emacs-no-x-toolkit
-
               (specification->package "emacs-pgtk-native-comp")
+              (specification->package "emacs-no-x-toolkit")
+              (specification->package "emacs")
               (specification->package "bash")
+              (specification->package "git")
+              (specification->package "curl")
+              (specification->package "stow")
+              (specification->package "vim")
               (specification->package "dmenu")
               (specification->package "nix")
               (specification->package "st")
@@ -96,7 +96,6 @@ EndSection
               (specification->package "bluez")
               (specification->package "gvfs")
               (specification->package "fuse")
-              (specification->package "emacs")
               (specification->package "nss-certs")
               (specification->package "ncurses")
               )
