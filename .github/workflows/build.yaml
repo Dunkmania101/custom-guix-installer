@@ -1,0 +1,47 @@
+name: Build Guix Installer
+
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    # build every week
+    - cron: "0 0 */7 * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Install Guix
+        uses: PromyLOPh/guix-install-action@v1
+
+      - name: Build ISO
+        run: |
+          # Build the image
+          image=$(guix time-machine -- system image -t iso9660 './guix/installer.scm')
+          # Copy the image to the local folder with a better name
+          export RELEASE_TAG=$(date +"%Y%m%d%H%M")
+          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
+          cp $image ./guix-installer-$RELEASE_TAG.iso
+      - name: Prepare Release Notes
+        run: |
+          echo $'This installer image was prepared with the following configuration:\r\n\r\n```\r\n' > release-notes.md
+          cat ./guix/installer.scm >> release-notes.md
+          echo $'\r\n```' >> release-notes.md
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Guix Installer - ${{ env.RELEASE_TAG }}
+          tag_name: v${{ env.RELEASE_TAG }}
+          body_path: release-notes.md
+          files: guix-installer-${{ env.RELEASE_TAG }}.iso
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: Dunkmania101/custom-guix-installer
