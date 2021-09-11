@@ -12,6 +12,7 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (guix)
+  #:use-module (guix channels)
   #:export (installation-os-dunkmania))
 
 (define %guix-channels
