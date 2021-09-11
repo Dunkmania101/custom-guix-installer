@@ -1,10 +1,12 @@
 (define-module (dunkmania system install)
+  #:use-module (gnu packages)
   #:use-module (gnu services)
   #:use-module (gnu system)
-  #:use-module (gnu system install)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages base)
   #:use-module (gnu packages mtools)
   #:use-module (gnu packages package-management)
+  #:use-module (gnu packages gnome)
   #:use-module (gnu services desktop)
   #:use-module (gnu services xorg)
   #:use-module (gnu services nix)
@@ -12,6 +14,10 @@
   #:use-module (gnu services ssh)
   #:use-module (gnu services cups)
   #:use-module (gnu services pm)
+  #:use-module (gnu services base)
+  #:use-module (gnu system install)
+  #:use-module (gnu system pam)
+  #:use-module (gnu system keyboard)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (guix)
@@ -37,6 +43,15 @@ Section \"InputClass\"
 EndSection
 ")
 
+(define %backlight-udev-rule
+  (udev-rule
+   "90-backlight.rules"
+   (string-append "ACTION==\"add\", SUBSYSTEM==\"backlight\", "
+                  "RUN+=\"/run/current-system/profile/bin/chgrp video /sys/class/backlight/%k/brightness\""
+                  "\n"
+                  "ACTION==\"add\", SUBSYSTEM==\"backlight\", "
+                  "RUN+=\"/run/current-system/profile/bin/chmod g+w /sys/class/backlight/%k/brightness\"")))
+
 (define %my-desktop-services
   (modify-services %desktop-services
                    (elogind-service-type config =>
@@ -49,19 +64,6 @@ EndSection
                    (network-manager-service-type config =>
                                                  (network-manager-configuration (inherit config)
                                                                                 (vpn-plugins (list network-manager-openvpn))))))
-
-
-
-(define %backlight-udev-rule
-  (udev-rule
-   "90-backlight.rules"
-   (string-append "ACTION==\"add\", SUBSYSTEM==\"backlight\", "
-                  "RUN+=\"/run/current-system/profile/bin/chgrp video /sys/class/backlight/%k/brightness\""
-                  "\n"
-                  "ACTION==\"add\", SUBSYSTEM==\"backlight\", "
-                  "RUN+=\"/run/current-system/profile/bin/chmod g+w /sys/class/backlight/%k/brightness\"")))
-
-
 
 (define installation-os-dunkmania
   (operating-system
@@ -97,7 +99,6 @@ EndSection
               (specification->package "xterm")
               (specification->package "tlp")
               (specification->package "python")
-              (specification->package "vi")
               (specification->package "xf86-input-libinput")
               (specification->package "bluez-alsa")
               (specification->package "bluez")
@@ -106,7 +107,7 @@ EndSection
               (specification->package "nss-certs")
               (specification->package "ncurses")
               )
-             (operating-system-packages installation-os)))))
+             (operating-system-packages installation-os)))
 
     (services
      (append
@@ -131,6 +132,6 @@ EndSection
              (xorg-configuration
               (keyboard-layout keyboard-layout)
               (extra-config (list %xorg-libinput-config)))))
-      %my-desktop-services))
+      %my-desktop-services))))
 
 installation-os-dunkmania
