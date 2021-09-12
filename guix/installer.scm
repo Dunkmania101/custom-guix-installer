@@ -40,7 +40,6 @@ EndSection
 
   (packages
    (append (list
-            (specification->package "emacs-pgtk-native-comp")
             (specification->package "emacs-no-x-toolkit")
             (specification->package "emacs")
             (specification->package "bash")
