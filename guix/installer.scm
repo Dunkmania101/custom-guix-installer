@@ -6,7 +6,7 @@
 (operating-system
   (inherit installation-os)
   (kernel linux)
-  (kernel-arguments '("quiet" "net.ifnames=0"))
+  (kernel-arguments '("quiet" "modprobe.blacklist=radeon" "net.ifnames=0"))
   (firmware (list linux-firmware))
   (initrd microcode-initrd)
 
@@ -31,10 +31,6 @@
                           (list `("channels.scm" ,(local-file "channels.scm"))))
           (extra-special-file "/usr/bin/env"
                               (file-append coreutils "/bin/env"))
-          (pam-limits-service ;; This enables JACK to enter realtime mode
-           (list
-            (pam-limits-entry "@realtime" 'both 'rtprio 99)
-            (pam-limits-entry "@realtime" 'both 'memlock 'unlimited)))
           (service nix-service-type))
     (operating-system-user-services installation-os)))))
 
