@@ -1,14 +1,12 @@
-(use-modules (gnu) (gnu services) (gnu system) (gnu system install) (guix) (guix channels) (nongnu packages linux) (nongnu system linux-initrd))
-(use-package-modules mtools linux)
-(use-service-modules networking nix)
+(use-modules (gnu) (gnu services) (gnu system) (gnu system install) (guix) (guix channels) (nongnu packages linux))
+(use-package-modules linux)
+(use-service-modules nix)
 
-(define installation-os-dunkmania
 (operating-system
   (inherit installation-os)
   (kernel linux)
-  (kernel-arguments '("quiet" "modprobe.blacklist=radeon" "net.ifnames=0"))
+  (kernel-arguments '("quiet" "net.ifnames=0"))
   (firmware (list linux-firmware))
-  (initrd microcode-initrd)
 
   (packages
    (append (list
@@ -32,6 +30,4 @@
           (extra-special-file "/usr/bin/env"
                               (file-append coreutils "/bin/env"))
           (service nix-service-type))
-    (operating-system-user-services installation-os)))))
-
-installation-os-dunkmania
+    (operating-system-user-services installation-os))))
