@@ -2,6 +2,19 @@
 (use-package-modules linux)
 (use-service-modules nix)
 
+(define %guix-channels
+  (scheme-file
+   "channels.scm"
+   #~(cons* (channel
+             (name 'nonguix)
+             (url "https://gitlab.com/nonguix/nonguix")
+             (introduction
+              (make-channel-introduction
+               "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+               (openpgp-fingerprint
+                "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+            %default-channels)))
+
 (operating-system
   (inherit installation-os)
   (kernel linux)
@@ -24,9 +37,7 @@
 
   (services
    (append
-    (list (extra-special-file "/etc/guix/channels.scm" (local-file "channels.scm"))
-          (simple-service 'channel-file etc-service-type
-                          (list `("channels.scm" ,(local-file "channels.scm"))))
+    (list (extra-special-file "/etc/guix/channels.scm" %guix-channels)
           (extra-special-file "/usr/bin/env"
                               (file-append coreutils "/bin/env"))
           (service nix-service-type))
