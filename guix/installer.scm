@@ -28,6 +28,7 @@
             (specification->package "network-manager")
             (specification->package "mobile-broadband-provider-info")
             (specification->package "git")
+            (specification->package "chrony")
             (specification->package "curl")
             (specification->package "stow")
             (specification->package "vim")
