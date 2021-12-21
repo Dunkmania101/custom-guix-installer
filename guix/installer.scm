@@ -40,7 +40,6 @@
    (append
     (list 
       (guix-configuration
-        (inherit config)
         (substitute-urls
           (append (list "https://substitutes.nonguix.org")
                   %default-substitute-urls))
