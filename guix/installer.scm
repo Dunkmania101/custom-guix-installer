@@ -24,6 +24,7 @@
     (append (list
               (specification->package "emacs-no-x-toolkit")
               (specification->package "bash")
+              (specification->package "fdisk")
               (specification->package "usb-modeswitch")
               (specification->package "network-manager")
               (specification->package "mobile-broadband-provider-info")
