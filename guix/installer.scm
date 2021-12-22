@@ -41,6 +41,5 @@
                                                                                      (ecc 
                                                                                        (curve Ed25519)
                                                                                        (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))"))
-                                                                %default-authorized-guix-keys)))))
-   (operating-system-user-services installation-os))))
+                                                                %default-authorized-guix-keys))))))))
 
