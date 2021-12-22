@@ -26,7 +26,9 @@
 
   (services
     (append
-      (list 
+      (list
+        (simple-service 'channel-file etc-service-type
+                        (list `("channels.scm" ,(local-file "channels.scm"))))
         (extra-special-file "/usr/bin/env"
                             (file-append coreutils "/bin/env")))
       (modify-services (operating-system-user-services installation-os)
