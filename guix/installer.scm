@@ -1,4 +1,11 @@
-(use-modules (gnu) (gnu services) (gnu system) (gnu system install) (guix) (guix channels) (nongnu packages linux))
+(use-modules
+ (gnu)
+ (gnu services)
+ (gnu system)
+ (gnu system install)
+ (guix)
+ (guix channels)
+ (nongnu packages linux))
 (use-package-modules linux)
 
 (operating-system
