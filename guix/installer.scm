@@ -21,6 +21,7 @@
               (specification->package "fdisk")
               (specification->package "usb-modeswitch")
               (specification->package "network-manager")
+              (specification->package "modem-manager")
               (specification->package "mobile-broadband-provider-info")
               (specification->package "git")
               (specification->package "chrony")
