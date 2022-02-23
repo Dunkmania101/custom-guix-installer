@@ -28,7 +28,7 @@ jobs:
           SUBSTITUTE_URLS='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'
           wget https://substitutes.nonguix.org/signing-key.pub
           sudo -E guix archive --authorize < ./signing-key.pub
-          image=$(guix time-machine -C ./guix/channels.scm -- system --substitute-urls=$SUBSTITUTE_URLS image -t iso9660 './guix/installer.scm')
+          image=$(guix time-machine -C ./guix/channels.scm -- system --substitute-urls="$SUBSTITUTE_URLS" image -t iso9660 './guix/installer.scm')
           # Copy the image to the local folder with a better name
           export RELEASE_TAG=$(date +"%Y%m%d%H%M")
           echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
