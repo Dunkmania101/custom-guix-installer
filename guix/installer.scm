@@ -7,7 +7,6 @@
  (guix channels)
  (nongnu packages linux))
 (use-package-modules linux)
-(use-service-modules networking)
 
 (operating-system
   (inherit installation-os)
@@ -36,7 +35,6 @@
   (services
     (append
       (list
-       (service network-manager-service-type)
         (simple-service 'channel-file etc-service-type
                         (list `("channels.scm" ,(local-file "channels.scm"))))
         (extra-special-file "/usr/bin/env"
