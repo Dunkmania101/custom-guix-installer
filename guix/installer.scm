@@ -7,7 +7,7 @@
  (guix channels)
  (nongnu packages linux))
 (use-package-modules linux)
-(use-service-modules desktop)
+(use-service-modules networking)
 
 (operating-system
   (inherit installation-os)
