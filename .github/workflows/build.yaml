@@ -36,9 +36,14 @@ jobs:
           cp $image ./guix-installer-$RELEASE_TAG.iso
       - name: Prepare Release Notes
         run: |
-          echo $'This installer image was prepared with the following configuration:\r\n\r\n```\r\n' > release-notes.md
+          echo $'This installer image was prepared with the following configuration:\r\n\r\n```\r\n' >> release-notes.md
           cat ./guix/installer.scm >> release-notes.md
+          echo $'\r\n```\r\n\r\nAnd the following channels:\r\n\r\n```\r\n' >> release-notes.md
+          cat ./guix/channels.scm >> release-notes.md
+          echo $'\r\n```\r\n\r\nmd5sum of the ISO:\r\n\r\n```\r\n' >> release-notes.md
+          md5sum ./guix-installer-*.iso >> release-notes.md
           echo $'\r\n```' >> release-notes.md
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
