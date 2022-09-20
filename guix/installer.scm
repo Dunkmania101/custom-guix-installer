@@ -39,6 +39,8 @@
                         (list `("channels.scm" ,(local-file "channels.scm"))))
         (extra-special-file "/usr/bin/env"
                             (file-append coreutils "/bin/env")))
+        (extra-special-file "/usr/bin/start-guix-install.sh"
+                            (local-file "start-guix-install.sh"))
       (modify-services (operating-system-user-services installation-os)
                        (guix-service-type config => (guix-configuration
                                                       (inherit config)

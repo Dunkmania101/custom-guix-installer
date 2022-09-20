@@ -34,6 +34,7 @@ jobs:
           export RELEASE_TAG=$(date +"%Y%m%d%H%M")
           echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
           cp $image ./guix-installer-$RELEASE_TAG.iso
+
       - name: Prepare Release Notes
         run: |
           echo $'This installer image was prepared with the following configuration:\r\n\r\n```\r\n' >> release-notes.md
