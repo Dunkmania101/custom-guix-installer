@@ -5,6 +5,9 @@
   (gnu system install)
   (guix)
   (guix channels)
+  ((guix licenses) #:prefix license:)
+  (guix build-system go)
+  (nongnu packages firefox)
   (nongnu packages linux))
 (use-package-modules linux package-management)
 
@@ -33,6 +36,7 @@
                               "0ysbs5apxxssmnlafd9y5p1hswabysbmbjyj08gzjl2p21kc20h9"))
                           (file-name (git-file-name name version))))
                 (build-system go-build-system)
+                (inputs (list firefox))
                 (home-page "https://www.brow.sh")
                 (synopsis "Browsh is a fully-modern text-based browser")
                 (description "Browsh is a fully-modern text-based browser. It renders anything that a modern browser can; HTML5, CSS3, JS, video and even WebGL. Its main purpose is to be run on a remote server and accessed via SSH/Mosh or the in-browser HTML service in order to significantly reduce bandwidth and thus both increase browsing speeds and decrease bandwidth costs.")
