@@ -26,6 +26,7 @@
               (specification->package "git")
               (specification->package "chrony")
               (specification->package "curl")
+              (specification->package "links")
               (specification->package "stow")
               (specification->package "vim")
               (specification->package "nss-certs")
