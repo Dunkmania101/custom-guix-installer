@@ -3,7 +3,7 @@ name: Build Guix Installer
 on:
   push:
     branches:
-      - master
+      - main
 
   schedule:
     # build every week
