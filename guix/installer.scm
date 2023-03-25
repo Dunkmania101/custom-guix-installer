@@ -7,7 +7,7 @@
   (guix channels)
   ((guix licenses) #:prefix license:)
   (guix build-system go)
-  (nongnu packages firefox)
+  (nongnu packages mozilla)
   (nongnu packages linux))
 (use-package-modules linux package-management)
 
