@@ -6,6 +6,7 @@
   (guix)
   (guix channels)
   ((guix licenses) #:prefix license:)
+  (guix git-download)
   (guix build-system go)
   (nongnu packages mozilla)
   (nongnu packages linux))
