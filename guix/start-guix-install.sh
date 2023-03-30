@@ -9,6 +9,6 @@ herd start cow-store /mnt
 cp /etc/channels.scm /mnt/etc/
 chmod +w /mnt/etc/channels.scm
 
-guix pull && hash guix
-guix time-machine -C /mnt/etc/channels.scm -- system --fallback init /mnt/etc/config.scm /mnt && echo 'Done!' || echo 'Error!'
+guix pull --fallback && hash guix
+guix time-machine -C /mnt/etc/channels.scm -- system --fallback -kK init /mnt/etc/config.scm /mnt && echo 'Done!' || echo 'Error!'
 
