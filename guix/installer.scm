@@ -67,8 +67,6 @@
                         (list `("channels.scm" ,(local-file "channels.scm"))))
         (simple-service 'start-guix-install-file etc-service-type
                         (list `("start-guix-install.sh" ,(local-file "start-guix-install.sh"))))
-        (extra-special-file "/usr/bin/start-guix-install.sh"
-                            (local-file "start-guix-install.sh"))
         (extra-special-file "/usr/bin/env"
                             (file-append coreutils "/bin/env")))
       (modify-services (operating-system-user-services installation-os)
