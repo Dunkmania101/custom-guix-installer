@@ -29,6 +29,8 @@ jobs:
       # Cannot use a cache for /gnu/store, since restore fails
       - name: Install Guix
         uses: PromyLOPh/guix-install-action@v1
+        with:
+          pullAfterInstall: false
 
       - name: Build ISO
         run: |
