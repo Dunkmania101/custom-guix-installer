@@ -38,7 +38,7 @@ jobs:
           SUBSTITUTE_URLS='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'
           wget https://substitutes.nonguix.org/signing-key.pub
           sudo -E /var/guix/profiles/per-user/root/current-guix/bin/guix archive --authorize < ./signing-key.pub
-          /var/guix/profiles/per-user/root/current-guix/bin/guix pull -C ./guix/channels.scm --substitute-urls="$SUBSTITUTE_URLS" && hash guix
+          /var/guix/profiles/per-user/root/current-guix/bin/guix pull -C ./guix/channels.scm --substitute-urls="$SUBSTITUTE_URLS" --fallback && hash guix
           image=$(/var/guix/profiles/per-user/root/current-guix/bin/guix time-machine -C ./guix/channels.scm -- system --substitute-urls="$SUBSTITUTE_URLS" --fallback image -t iso9660 './guix/installer.scm')
           # Copy the image to the local folder with a better name
           export RELEASE_TAG=$(date +"%Y%m%d%H%M")
