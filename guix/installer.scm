@@ -34,7 +34,7 @@
                                  (commit version)))
                           (sha256
                             (base32
-                              "0ysbs5apxxssmnlafd9y5p1hswabysbmbjyj08gzjl2p21kc20h9"))
+                              "1r2afqg3as60jsd92wvs6i7x166fyv7cg4dvw3yi4i44vdq5bc19"))
                           (file-name (git-file-name name version))))
                 (build-system go-build-system)
                 (inputs (list firefox))
