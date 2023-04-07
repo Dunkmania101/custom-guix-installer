@@ -18,15 +18,6 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
-      - name: Guix cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/guix
-          # use a key that (almost) never matches
-          key: guix-cache-${{ github.sha }}
-          restore-keys: |
-            guix-cache-
-      # Cannot use a cache for /gnu/store, since restore fails
       - name: Install Guix
         uses: PromyLOPh/guix-install-action@v1
         with:
