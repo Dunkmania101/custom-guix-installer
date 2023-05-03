@@ -24,24 +24,24 @@
 
   (packages
     (append (list
-              (package
-                (name "browsh")
-                (version "v1.8.2")
-                (source (origin
-                          (method git-fetch)
-                          (uri (git-reference
-                                 (url "https://github.com/browsh-org/browsh")
-                                 (commit version)))
-                          (sha256
-                            (base32
-                              "1r2afqg3as60jsd92wvs6i7x166fyv7cg4dvw3yi4i44vdq5bc19"))
-                          (file-name (git-file-name name version))))
-                (build-system go-build-system)
-                (inputs (list firefox))
-                (home-page "https://www.brow.sh")
-                (synopsis "Browsh is a fully-modern text-based browser")
-                (description "Browsh is a fully-modern text-based browser. It renders anything that a modern browser can; HTML5, CSS3, JS, video and even WebGL. Its main purpose is to be run on a remote server and accessed via SSH/Mosh or the in-browser HTML service in order to significantly reduce bandwidth and thus both increase browsing speeds and decrease bandwidth costs.")
-                (license license:lgpl2.1))
+              ;(package
+              ;  (name "browsh")
+              ;  (version "v1.8.2")
+              ;  (source (origin
+              ;            (method git-fetch)
+              ;            (uri (git-reference
+              ;                   (url "https://github.com/browsh-org/browsh")
+              ;                   (commit version)))
+              ;            (sha256
+              ;              (base32
+              ;                "1r2afqg3as60jsd92wvs6i7x166fyv7cg4dvw3yi4i44vdq5bc19"))
+              ;            (file-name (git-file-name name version))))
+              ;  (build-system go-build-system)
+              ;  (inputs (list firefox))
+              ;  (home-page "https://www.brow.sh")
+              ;  (synopsis "Browsh is a fully-modern text-based browser")
+              ;  (description "Browsh is a fully-modern text-based browser. It renders anything that a modern browser can; HTML5, CSS3, JS, video and even WebGL. Its main purpose is to be run on a remote server and accessed via SSH/Mosh or the in-browser HTML service in order to significantly reduce bandwidth and thus both increase browsing speeds and decrease bandwidth costs.")
+              ;  (license license:lgpl2.1))
               (specification->package "firefox")
               (specification->package "links")
               (specification->package "lynx")
