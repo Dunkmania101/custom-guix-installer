@@ -45,6 +45,8 @@ jobs:
           cat ./guix/channels.scm >> release-notes.md
           echo $'\r\n```\r\n\r\nmd5sum of the ISO:\r\n\r\n```\r\n' >> release-notes.md
           md5sum ./guix-installer-*.iso >> release-notes.md
+          echo $'\r\n```\r\n\r\nls -lh output of the ISO:\r\n\r\n```\r\n' >> release-notes.md
+          ls -lh ./guix-installer-*.iso >> release-notes.md
           echo $'\r\n```' >> release-notes.md
 
       - name: Create Release
